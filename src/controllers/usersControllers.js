@@ -1,7 +1,11 @@
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
+const boom = require('@hapi/boom');
 const { config } = require('../config');
 const UserService = require('../services/users');
+
+// Basic strategy
+require('../utils/auth/strategies/basic');
 
 const getUserId = async (req, res, next) => {
   const { userId } = req.params;
@@ -38,10 +42,10 @@ const singIn = async (req, res, next) => {
   passport.authenticate('basic', function (error, user) {
     try {
       if (error || !user) {
-        next(boom.unauthorized());
+        return next(boom.unauthorized());
       }
 
-      req.login(user, { session: false }, async function (error) {
+      return req.login(user, { session: false }, async function (error) {
         if (error) {
           next(error);
         }
@@ -52,7 +56,6 @@ const singIn = async (req, res, next) => {
           sub: id,
           subUser: id_usuarios,
           correo,
-          defecto,
         };
 
         const token = jwt.sign(payload, config.authJwtSecret, {

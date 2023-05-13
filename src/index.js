@@ -1,14 +1,23 @@
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
+const cookieParser = require('cookie-parser');
 const app = express();
 const { config } = require('./config/index');
 const { errorHandler, logErrors, wrapErrors } = require('./utils/middleware/errorHandler');
 const v1UserApi = require('./routes/v1/users');
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [config.originCors],
+    credentials: true,
+  })
+);
+
+app.use(cookieParser());
 app.use(helmet());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(logErrors);
 app.use(wrapErrors);
 app.use(errorHandler);

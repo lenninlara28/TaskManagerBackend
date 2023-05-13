@@ -94,7 +94,7 @@ class UserService {
           {
             correo: data.correo,
             password: data.password,
-            estado: 0,
+            estado: 1,
           },
           t
         );
@@ -107,8 +107,6 @@ class UserService {
       throw new Error(error);
     }
   }
-
-  async signIn(data) {}
 
   async updateUser(userData, userId, transaction = null) {
     const accountService = new AccountService();
