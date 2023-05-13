@@ -22,9 +22,6 @@ module.exports = (sequelize, DataTypes) => {
       segundo_apellido: {
         type: DataTypes.STRING(500),
       },
-      url_perfil: {
-        type: DataTypes.STRING(500),
-      },
       estado: {
         type: DataTypes.BOOLEAN,
         defaultValue: 1,

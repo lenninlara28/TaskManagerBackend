@@ -11,7 +11,6 @@ module.exports = {
           segundo_nombre: '',
           primer_apellido: 'Admin',
           segundo_apellido: '',
-          url_perfil: 'Super-Amdin',
           estado: 1,
         },
       ],
