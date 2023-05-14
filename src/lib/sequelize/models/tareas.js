@@ -8,8 +8,12 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      descripcion: {
+      titulo: {
         type: DataTypes.STRING(500),
+        allowNull: false,
+      },
+      descripcion: {
+        type: DataTypes.TEXT,
         allowNull: false,
       },
       estado: {
@@ -24,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       tableName: 'tareas',
-      timestamps: false,
+      timestamps: true,
     }
   );
 
