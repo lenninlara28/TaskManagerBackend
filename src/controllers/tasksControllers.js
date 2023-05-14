@@ -33,7 +33,7 @@ const getTaskId = async (req, res, next) => {
 
 const newTask = async (req, res, next) => {
   const tasksServices = new TasksServices();
-  const { taskData } = req.body;
+  const taskData = req.body;
   try {
     if (!taskData) {
       throw new Error('No se encontro la tarea');
