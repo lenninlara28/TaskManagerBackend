@@ -40,6 +40,7 @@ const singUp = async (req, res, next) => {
 
 const singIn = async (req, res, next) => {
   passport.authenticate('basic', function (error, user) {
+    const userService = new UserService();
     try {
       if (error || !user) {
         return next(boom.unauthorized());
@@ -51,6 +52,8 @@ const singIn = async (req, res, next) => {
         }
 
         const { id, correo, id_usuarios } = user;
+
+        const data_user = await userService.getUserId(id_usuarios);
 
         const payload = {
           sub: id,
@@ -69,7 +72,7 @@ const singIn = async (req, res, next) => {
           path: '/;sameSite=None;Secure;HttpOnly',
         });
 
-        res.status(200).json({ id, correo });
+        res.status(200).json({ id, correo, data_user });
       });
     } catch (error) {
       next(error);

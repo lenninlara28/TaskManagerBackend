@@ -4,7 +4,8 @@ const getTaskWhere = async (req, res, next) => {
   const tasksServices = new TasksServices();
 
   try {
-    const { where } = req.body;
+    const where = req.body;
+
     const task = await tasksServices.getTaskWhere(where);
 
     res.status(200).json({

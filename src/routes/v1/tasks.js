@@ -5,7 +5,7 @@ const { getTaskId, getTaskWhere, newTask, updateTask, deleteTask } = require('..
 const router = expresss.Router();
 
 router
-  .get('/', getTaskWhere)
+  .post('/', getTaskWhere)
 
   .get('/:taskId', getTaskId)
 
